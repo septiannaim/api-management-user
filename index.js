@@ -126,8 +126,16 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Root route
+// Serve static files
+app.use(express.static('public'));
+
+// Root route - serve the web interface
 app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+// API info route
+app.get('/api', (req, res) => {
   res.json({
     success: true,
     message: 'User Management API',
